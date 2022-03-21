@@ -16,37 +16,45 @@ public class WeaponZoom : MonoBehaviour
 
 
     [SerializeField] Camera FPCam;
+    [SerializeField] RigidbodyFirstPersonController fpsController;
 
-    RigidbodyFirstPersonController fpsController;
+    public bool zoomedInToggle = false;
 
-    bool zoomedInToggle = false;
-    // Start is called before the first frame update
-    void Start()
-    {
-        fpsController = GetComponent<RigidbodyFirstPersonController>();
-    }
-
-    // Update is called once per frame
     void Update()
     {
         if(Input.GetMouseButtonDown(1))
         {
             if(zoomedInToggle == false)
             {
-                zoomedInToggle = true;
-                fpsController.mouseLook.XSensitivity = zoomedInXSens;
-                fpsController.mouseLook.YSensitivity = zoomedInYSens;
-                FPCam.fieldOfView = zoomedInFOV;
+                ZoomIn();
             }
             else
             {
-                zoomedInToggle = false;
-                fpsController.mouseLook.XSensitivity = zoomedOutXSens;
-                fpsController.mouseLook.YSensitivity = zoomedOutYSens;
-                FPCam.fieldOfView = zoomedOutFOV;
+                ZoomOut();
             }
         }
- 
+    }
 
+
+    void ZoomIn()   
+    {
+        zoomedInToggle = true;
+        fpsController.mouseLook.XSensitivity = zoomedInXSens;
+        fpsController.mouseLook.YSensitivity = zoomedInYSens;
+        FPCam.fieldOfView = zoomedInFOV;
+    }
+    void ZoomOut()
+    {
+        zoomedInToggle = false;
+        fpsController.mouseLook.XSensitivity = zoomedOutXSens;
+        fpsController.mouseLook.YSensitivity = zoomedOutYSens;
+        FPCam.fieldOfView = zoomedOutFOV;
+    }
+
+    
+
+    void OnDisable() 
+    {
+        ZoomOut();
     }
 }
