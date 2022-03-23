@@ -295,13 +295,13 @@ MonoBehaviour:
     clampVerticalRotation: 1
     MinimumX: -45
     MaximumX: 90
-    smooth: 1
+    smooth: 0
     smoothTime: 18
     lockCursor: 1
   advancedSettings:
     groundCheckDistance: 0.1
     stickToGroundHelperDistance: 0.6
-    slowDownRate: 20
+    slowDownRate: 0.03
     airControl: 0
     shellOffset: 0
 --- !u!114 &5420164608769574108
@@ -342,7 +342,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6fc8aa1f64c2b4b4ca6320def7a26ad4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ammoAmount: 10
+  ammoSlots:
+  - ammoType: 0
+    ammoAmount: 30
+  - ammoType: 1
+    ammoAmount: 20
+  - ammoType: 2
+    ammoAmount: 90
 --- !u!1 &5099896847800690579
 GameObject:
   m_ObjectHideFlags: 0
