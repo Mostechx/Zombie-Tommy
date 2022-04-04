@@ -30,6 +30,14 @@ public class Weapon : MonoBehaviour
             StartCoroutine(Shoot());
         }
     }
+    public bool CanShoot()
+    {
+        if (AmmoSlot.GetCurrentAmmo(ammoType) == 0)
+        {
+            canShoot = false;
+        }
+        return canShoot;
+    }
 
     void DisplayAmmo()
     {

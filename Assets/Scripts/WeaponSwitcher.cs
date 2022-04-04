@@ -6,9 +6,17 @@ using UnityEngine;
 public class WeaponSwitcher : MonoBehaviour
 {
     [SerializeField] int currentWeapon = 0;
+    [SerializeField] AudioClip pistolGunshot;
+    [SerializeField] AudioClip carbineGunshot;
+    [SerializeField] AudioClip shotgunGunshot;
+
+    AudioSource AS;
+    Weapon weapon;
+
     void Start()
     {
         SetWeaponActive();
+        AS = GetComponent<AudioSource>();
     }
 
     void Update()
@@ -17,6 +25,7 @@ public class WeaponSwitcher : MonoBehaviour
 
         ProcessKeyInput();
         ProcessScrollWheel();
+        ProcessGunshots();
 
         if (previousWeapon != currentWeapon)
         {
@@ -24,7 +33,30 @@ public class WeaponSwitcher : MonoBehaviour
         }
     }
 
-    private void ProcessScrollWheel()
+    void ProcessGunshots()
+    {
+        weapon = GetComponentInChildren<Weapon>();
+        if(Input.GetMouseButtonDown(0) && weapon.CanShoot())
+        {
+            if(currentWeapon == 0)
+            {
+                AS.Stop();
+                AS.PlayOneShot(pistolGunshot);
+            }
+            if(currentWeapon == 1)
+            {
+                AS.Stop();
+                AS.PlayOneShot(shotgunGunshot);
+            }
+            if(currentWeapon == 2)
+            {
+                AS.Stop();
+                AS.PlayOneShot(carbineGunshot);
+            }
+        }
+    }
+
+    void ProcessScrollWheel()
     {
         if(Input.GetAxis("Mouse ScrollWheel") < 0)
         {
