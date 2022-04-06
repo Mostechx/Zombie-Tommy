@@ -8,6 +8,9 @@ namespace UnityStandardAssets.Characters.FirstPerson
     [RequireComponent(typeof (CapsuleCollider))]
     public class RigidbodyFirstPersonController : MonoBehaviour
     {
+        AudioSource AS;
+        [SerializeField] AudioClip running;
+        [SerializeField] AudioClip walking;
         [Serializable]
         public class MovementSettings
         {
@@ -120,6 +123,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
 
         private void Start()
         {
+            AS = GetComponent<AudioSource>();
             m_RigidBody = GetComponent<Rigidbody>();
             m_Capsule = GetComponent<CapsuleCollider>();
             mouseLook.Init (transform, cam.transform);
@@ -128,11 +132,52 @@ namespace UnityStandardAssets.Characters.FirstPerson
 
         private void Update()
         {
+
             RotateView();
+            PlayRunningAndWalkingSFX();
 
             if (CrossPlatformInputManager.GetButtonDown("Jump") && !m_Jump)
             {
                 m_Jump = true;
+            }
+        }
+
+        void PlayRunningAndWalkingSFX()
+        {
+            if (Running)
+            {
+                AS.clip = running;
+                if(!AS.isPlaying)
+                {
+                    AS.PlayOneShot(running);
+                    AS.loop = true;
+                }
+            }
+            if (!Running && AS.clip == running )
+            {
+                AS.loop = false;
+                AS.Stop();
+            }
+            
+            if (Movekeys() && !Running)
+            {
+                AS.clip = walking;
+                if(!AS.isPlaying)
+                {
+                    AS.PlayOneShot(walking);
+                    AS.loop = true;
+                }
+            }
+            if(!Movekeys() && !Running && AS.clip == walking)
+            {
+                AS.loop = false;
+                AS.Stop();
+            }
+
+            bool Movekeys()
+            {
+                if(Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D)) return true;
+                else return false;
             }
         }
 

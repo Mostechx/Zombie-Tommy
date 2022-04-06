@@ -20694,6 +20694,11 @@ PrefabInstance:
       propertyPath: ammoText
       value: 
       objectReference: {fileID: 1395874007}
+    - target: {fileID: 7928168686418404134, guid: c6453f8e1f814744d8b94e5a6d1f9942,
+        type: 3}
+      propertyPath: m_PlayOnAwake
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c6453f8e1f814744d8b94e5a6d1f9942, type: 3}
 --- !u!1001 &1247349908
@@ -25138,17 +25143,17 @@ PrefabInstance:
     - target: {fileID: 5609621556457028796, guid: 32ae3c5177a417c4f930f56bc7fe93de,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 70.87424
+      value: 68.51
       objectReference: {fileID: 0}
     - target: {fileID: 5609621556457028796, guid: 32ae3c5177a417c4f930f56bc7fe93de,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 50.94
+      value: 51.37
       objectReference: {fileID: 0}
     - target: {fileID: 5609621556457028796, guid: 32ae3c5177a417c4f930f56bc7fe93de,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 89.281494
+      value: 86.16
       objectReference: {fileID: 0}
     - target: {fileID: 5609621556457028796, guid: 32ae3c5177a417c4f930f56bc7fe93de,
         type: 3}
